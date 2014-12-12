@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6D4739E61A3A905400C887F1 /* WirtualJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4739E51A3A905400C887F1 /* WirtualJoy.framework */; };
 		6D4739E71A3A905400C887F1 /* WirtualJoy.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4739E51A3A905400C887F1 /* WirtualJoy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6D4739EB1A3AA83400C887F1 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4739EA1A3AA83400C887F1 /* IOBluetooth.framework */; };
 		7916EAF218E75C590064C241 /* VHID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB077818E66EDF0007BAD1 /* VHID.framework */; };
 		7916EAF418E765B20064C241 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB06D118E397C70007BAD1 /* MainMenu.xib */; };
 		7916EAF718E76BD80064C241 /* off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7916EAF518E76BD80064C241 /* off.png */; };
@@ -17,7 +18,6 @@
 		7916EB0718E771820064C241 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB072A18E4DA8F0007BAD1 /* IOKit.framework */; };
 		7916EB0818E771850064C241 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB06BC18E397C70007BAD1 /* Cocoa.framework */; };
 		79A6C75018E787C70050CD3A /* WirtualJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6C74F18E787C70050CD3A /* WirtualJoy.framework */; };
-		79A6C75118E787CD0050CD3A /* WirtualJoy.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6C74F18E787C70050CD3A /* WirtualJoy.framework */; };
 		79FB06C718E397C70007BAD1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79FB06C518E397C70007BAD1 /* InfoPlist.strings */; };
 		79FB06C918E397C70007BAD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB06C818E397C70007BAD1 /* main.m */; };
 		79FB06CD18E397C70007BAD1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 79FB06CB18E397C70007BAD1 /* Credits.rtf */; };
@@ -63,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		6D4739E51A3A905400C887F1 /* WirtualJoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = WirtualJoy.framework; path = "/Users/bettse/Library/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug/WirtualJoy.framework"; sourceTree = "<absolute>"; };
+		6D4739EA1A3AA83400C887F1 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		7916EAF518E76BD80064C241 /* off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = off.png; sourceTree = "<group>"; };
 		7916EAF618E76BD80064C241 /* on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = on.png; sourceTree = "<group>"; };
 		79A6C74F18E787C70050CD3A /* WirtualJoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WirtualJoy.framework; path = "../../../Library/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-eyxnkpueyftvadeltapuzbfrimys/Build/Products/Debug/WirtualJoy.framework"; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4739EB1A3AA83400C887F1 /* IOBluetooth.framework in Frameworks */,
 				79A6C75018E787C70050CD3A /* WirtualJoy.framework in Frameworks */,
 				7916EB0818E771850064C241 /* Cocoa.framework in Frameworks */,
 				7916EB0718E771820064C241 /* IOKit.framework in Frameworks */,
@@ -131,6 +133,7 @@
 		79FB06BB18E397C70007BAD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D4739EA1A3AA83400C887F1 /* IOBluetooth.framework */,
 				79A6C74F18E787C70050CD3A /* WirtualJoy.framework */,
 				79FB072A18E4DA8F0007BAD1 /* IOKit.framework */,
 				79FB06BC18E397C70007BAD1 /* Cocoa.framework */,

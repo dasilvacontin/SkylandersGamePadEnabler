@@ -13,21 +13,8 @@
 #import <IOKit/usb/USBSpec.h>
 #import "XboxOneButtonMap.h"
 
-static SInt32 idVendor = 0x045e;
-static SInt32 idProduct = 0x02d1;
-
 @interface GAXboxControllerCommunication ()
 
-  @property (nonatomic) CFMutableDictionaryRef matchingDictionary;
-  @property (nonatomic) SInt32 score;
-  @property (nonatomic) io_iterator_t iterator;
-  @property (nonatomic) io_service_t usbRef;
-  @property (nonatomic) IOCFPlugInInterface **plugin;
-  @property (nonatomic) IOUSBConfigurationDescriptorPtr config;
-  @property (nonatomic) IOUSBDeviceInterface300 **usbDevice;
-  @property (nonatomic) IOUSBFindInterfaceRequest interfaceRequest;
-  @property (nonatomic) IOUSBInterfaceInterface **usbInterface;
-  @property (nonatomic) IOReturn returnCode;
   @property (nonatomic) XboxOneButtonMap buttonMap;
   @property (nonatomic) BOOL shouldPoll;
 
@@ -36,17 +23,6 @@ static SInt32 idProduct = 0x02d1;
 @implementation GAXboxControllerCommunication
 
   @synthesize delegate;
-
-  @synthesize matchingDictionary;
-  @synthesize score;
-  @synthesize iterator;
-  @synthesize usbRef;
-  @synthesize plugin;
-  @synthesize config;
-  @synthesize usbDevice;
-  @synthesize interfaceRequest;
-  @synthesize usbInterface;
-  @synthesize returnCode;
   @synthesize buttonMap;
   @synthesize shouldPoll;
 
@@ -54,9 +30,8 @@ static SInt32 idProduct = 0x02d1;
 
 - (id)init {
   self = [super init];
-  matchingDictionary = NULL;
-  iterator = 0;
-  usbDevice = NULL;
+  manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+  gamepads = [NSMutableArray arrayWithCapacity:2];
   shouldPoll = NO;
   return self;
 }
@@ -64,93 +39,23 @@ static SInt32 idProduct = 0x02d1;
 #pragma mark - Setup
 
 - (int)searchForDevices {
-  // Set device
-  matchingDictionary = IOServiceMatching(kIOUSBDeviceClassName);
-  CFDictionaryAddValue(matchingDictionary, CFSTR(kUSBVendorID), CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &idVendor));
-  CFDictionaryAddValue(matchingDictionary, CFSTR(kUSBProductID), CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &idProduct));
 
-  // Search for device
-  IOServiceGetMatchingServices(kIOMasterPortDefault, matchingDictionary, &iterator);
-  usbRef = IOIteratorNext(iterator);
-  IOObjectRelease(iterator);
-
-  return usbRef > 0 ? 0 : -1;
-}
-
-- (int)openDevice {
-  if (usbRef == 0) {
-    return -1;
-  }
-
-  // Open device
-  IOCreatePlugInInterfaceForService(usbRef, kIOUSBDeviceUserClientTypeID, kIOCFPlugInInterfaceID, &plugin, &score);
-  IOObjectRelease(usbRef);
-  (*plugin)->QueryInterface(plugin, CFUUIDGetUUIDBytes(kIOUSBDeviceInterfaceID300), (LPVOID)&usbDevice);
-  (*plugin)->Release(plugin);
-
-  returnCode = (*usbDevice)->USBDeviceOpen(usbDevice);
-
-  if (returnCode == kIOReturnSuccess) {
-    // Set first configuration as active
-    returnCode = (*usbDevice)->GetConfigurationDescriptorPtr(usbDevice, 0, &config);
-    if (returnCode != kIOReturnSuccess) {
-      return returnCode;
+    NSLog(@"%s, %@", __PRETTY_FUNCTION__, peripheral);
+    if(peripheral && (peripheral.state == CBPeripheralStateConnected)) {
+    } else {   /* No outstanding connection, open scan sheet */
+        [self startScan];
     }
-
-    (*usbDevice)->SetConfiguration(usbDevice, config->bConfigurationValue);
+    
     return 0;
-  }
-
-  else {
-    return returnCode;
-  }
-}
-
-- (int)configureInterfaceParameters {
-  // Set interface search parameters
-  interfaceRequest.bInterfaceClass = kIOUSBFindInterfaceDontCare;
-  interfaceRequest.bInterfaceSubClass = kIOUSBFindInterfaceDontCare;
-  interfaceRequest.bInterfaceProtocol = kIOUSBFindInterfaceDontCare;
-  interfaceRequest.bAlternateSetting = kIOUSBFindInterfaceDontCare;
-  (*usbDevice)->CreateInterfaceIterator(usbDevice, &interfaceRequest, &iterator);
-
-  // Pick first interface
-  usbRef = IOIteratorNext(iterator);
-  IOObjectRelease(iterator);
-
-  // Open interface
-  IOCreatePlugInInterfaceForService(usbRef, kIOUSBInterfaceUserClientTypeID, kIOCFPlugInInterfaceID, &plugin, &score);
-  IOObjectRelease(usbRef);
-  (*plugin)->QueryInterface(plugin, CFUUIDGetUUIDBytes(kIOUSBInterfaceInterfaceID300), (LPVOID)&usbInterface);
-  (*plugin)->Release(plugin);
-
-  returnCode = (*usbInterface)->USBInterfaceOpen(usbInterface);
-  if (returnCode != kIOReturnSuccess) {
-    printf("Could not open interface (error: %x)\n", returnCode);
-    return -1;
-  }
-
-  return 0;
-}
-
-#pragma mark - Operation
-
-- (int)initializeController {
-  // Send controller initialization data
-  char code[] = {0x05, 0x20};
-  return (*usbInterface)->WritePipe(usbInterface, 1, code, 2);
 }
 
 - (void)closeDevice {
-  (*usbInterface)->USBInterfaceClose(usbInterface);
-  (*usbDevice)->USBDeviceClose(usbDevice);
+    [manager cancelPeripheralConnection:peripheral];
 }
 
 - (void)startPollingController {
   if (!shouldPoll) {
     shouldPoll = YES;
-    [self performSelectorInBackground:@selector(poll) withObject:nil];
-    [[[NSThread alloc] initWithTarget:self selector:@selector(poll) object:nil] start];
   }
 }
 
@@ -159,51 +64,246 @@ static SInt32 idProduct = 0x02d1;
 }
 
 - (void)poll {
-  while (shouldPoll) {
-    UInt32 numBytes = 20;
-    char dataBuffer[32];
-    returnCode = (*usbInterface)->ReadPipe(usbInterface, 2, dataBuffer, &numBytes);
 
-    if (numBytes == 18) {
-      Byte b = dataBuffer[4];
-      buttonMap.sync  = (b & (1 << 0)) != 0;
-      buttonMap.dummy = (b & (1 << 1)) != 0;
-      buttonMap.menu  = (b & (1 << 2)) != 0;
-      buttonMap.view  = (b & (1 << 3)) != 0;
+}
 
-      buttonMap.a = (b & (1 << 4)) != 0;
-      buttonMap.b = (b & (1 << 5)) != 0;
-      buttonMap.x = (b & (1 << 6)) != 0;
-      buttonMap.y = (b & (1 << 7)) != 0;
+#pragma mark - Bluetooth Low Energy
 
-      b = dataBuffer[5];
-      buttonMap.dpad_up    = (b & (1 << 0)) != 0;
-      buttonMap.dpad_down  = (b & (1 << 1)) != 0;
-      buttonMap.dpad_left  = (b & (1 << 2)) != 0;
-      buttonMap.dpad_right = (b & (1 << 3)) != 0;
+#pragma mark - Start/Stop Scan methods
 
-      buttonMap.bumper_left       = (b & (1 << 4)) != 0;
-      buttonMap.bumper_right      = (b & (1 << 5)) != 0;
-      buttonMap.stick_left_click  = (b & (1 << 6)) != 0;
-      buttonMap.stick_right_click = (b & (1 << 7)) != 0;
+/*
+ Uses CBCentralManager to check whether the current platform/hardware supports Bluetooth LE. An alert is raised if Bluetooth LE is not enabled or is not supported.
+ */
+- (BOOL) isLECapableHardware
+{
+    NSString * state = nil;
 
-      buttonMap.trigger_left  = (dataBuffer[7] << 8) + (dataBuffer[6] & 0xff);
-      buttonMap.trigger_right = (dataBuffer[9] << 8) + (dataBuffer[8] & 0xff);
+    switch ([manager state])
+    {
+        case CBCentralManagerStateUnsupported:
+            state = @"The platform/hardware doesn't support Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStateUnauthorized:
+            state = @"The app is not authorized to use Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStatePoweredOff:
+            state = @"Bluetooth is currently powered off.";
+            break;
+        case CBCentralManagerStatePoweredOn:
+            return TRUE;
+        case CBCentralManagerStateUnknown:
+        default:
+            return FALSE;
 
-      buttonMap.stick_left_x  = (dataBuffer[11] << 8) + dataBuffer[10];
-      buttonMap.stick_left_y  = (dataBuffer[13] << 8) + dataBuffer[12];
-      buttonMap.stick_right_x = (dataBuffer[15] << 8) + dataBuffer[14];
-      buttonMap.stick_right_y = (dataBuffer[17] << 8) + dataBuffer[16];
-
-      [delegate controllerDidUpdateData:buttonMap];
-    }
-    else if (numBytes == 6) {
-      buttonMap.home = dataBuffer[4] & 1;
-      [delegate controllerDidUpdateData:buttonMap];
     }
 
-    [NSThread sleepForTimeInterval:0.005f];
+    NSLog(@"Central manager state: %@", state);
+
+    return FALSE;
+}
+
+/*
+ Request CBCentralManager to scan for gamepads using service UUID 0x1531
+ */
+- (void) startScan
+{
+
+    //NSLog(@"%s, %@", __PRETTY_FUNCTION__, manager);
+    [manager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"1531"]] options:nil];
+}
+
+/*
+ Request CBCentralManager to stop scanning
+ */
+- (void) stopScan
+{
+    [manager stopScan];
+}
+
+#pragma mark - CBCentralManager delegate methods
+/*
+ Invoked whenever the central manager's state is updated.
+ */
+- (void) centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    [self isLECapableHardware];
+}
+
+/*
+ Invoked when the central discovers peripheral while scanning.
+ */
+- (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)aPeripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    NSLog(@"%s, %@", __PRETTY_FUNCTION__, aPeripheral);
+    if( ![gamepads containsObject:aPeripheral] ) {
+        [gamepads addObject:aPeripheral];
+    }
+    //[manager retrievePeripheralsWithIdentifiers:@[aPeripheral.identifier]];
+    [manager retrievePeripherals:@[(id)aPeripheral.UUID]];
+
+
+}
+
+/*
+ Invoked when the central manager retrieves the list of known peripherals.
+ Automatically connect to first known peripheral
+ */
+- (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
+{
+    //NSLog(@"Retrieved peripheral: %lu - %@", [peripherals count], peripherals);
+
+    [self stopScan];
+
+    /* If there are any known devices, automatically connect to it.*/
+    if([peripherals count] > 0){
+        peripheral = peripherals[0];
+        [manager connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey: [NSNumber numberWithBool:YES]}];
+    }
+}
+
+/*
+ Invoked whenever a connection is succesfully created with the peripheral.
+ Discover available services on the peripheral
+ */
+- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral
+{
+    //NSLog(@"%s, %@", __PRETTY_FUNCTION__, aPeripheral);
+    [aPeripheral setDelegate:self];
+    [aPeripheral discoverServices:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"deviceConnected" object:nil userInfo:nil];
+}
+
+
+/*
+ Invoked whenever an existing connection with the peripheral is torn down.
+ Reset local variables
+ */
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)aPeripheral error:(NSError *)error
+{
+    if( peripheral ) {
+        [peripheral setDelegate:nil];
+        peripheral = nil;
+    }
+}
+
+/*
+ Invoked whenever the central manager fails to create a connection with the peripheral.
+ */
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)aPeripheral error:(NSError *)error
+{
+    //NSLog(@"Fail to connect to peripheral: %@ with error = %@", aPeripheral, [error localizedDescription]);
+    if( peripheral ) {
+        [peripheral setDelegate:nil];
+        peripheral = nil;
+    }
+}
+
+#pragma mark - CBPeripheral delegate methods
+/*
+ Invoked upon completion of a -[discoverServices:] request.
+ Discover available characteristics on interested services
+ */
+- (void) peripheral:(CBPeripheral *)aPeripheral didDiscoverServices:(NSError *)error
+{
+    //NSLog(@"Peripheral found %@", aPeripheral);
+    for (CBService *aService in aPeripheral.services)  {
+        //NSLog(@"Service found %@", aService);
+        [aPeripheral discoverCharacteristics:nil forService:aService];
+    }
+}
+
+/*
+ Invoked upon completion of a -[discoverCharacteristics:forService:] request.
+ Perform appropriate operations on interested characteristics
+ */
+- (void) peripheral:(CBPeripheral *)aPeripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
+{
+    if ( [service.UUID isEqual:[CBUUID UUIDWithString:CBUUIDGenericAccessProfileString]] )
+    {
+        for (CBCharacteristic *aChar in service.characteristics)
+        {
+            /* Read device name */
+            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:CBUUIDDeviceNameString]])
+            {
+                [aPeripheral readValueForCharacteristic:aChar];
+                NSLog(@"Found a Device Name Characteristic");
+            }
+        }
+    }
+
+    if ([service.UUID isEqual:[CBUUID UUIDWithString:@"180A"]])
+    {
+        for (CBCharacteristic *aChar in service.characteristics)
+        {
+            /* Read manufacturer name */
+            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:@"2A29"]])
+            {
+                [aPeripheral readValueForCharacteristic:aChar];
+                NSLog(@"Found a Device Manufacturer Name Characteristic");
+            }
+        }
+    }
+
+    for (CBCharacteristic *aChar in service.characteristics) {
+        if ((aChar.properties & CBCharacteristicPropertyRead) == CBCharacteristicPropertyRead &&
+            (aChar.properties & CBCharacteristicPropertyNotify) == CBCharacteristicPropertyNotify) {
+            //NSLog(@"Subscribing to characteristic %@ of service %@", aChar.UUID, service.UUID);
+            [peripheral setNotifyValue:YES forCharacteristic:aChar];
+        }
+    }
+}
+
+/*
+ Invoked upon completion of a -[readValueForCharacteristic:] request or on the reception of a notification/indication.
+ */
+- (void) peripheral:(CBPeripheral *)aPeripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+    
+    if( (characteristic.value) || !error ) {
+        [self decodeGamepad:characteristic.value];
+    }
+
+}
+
+-(void) decodeGamepad:(NSData*)input {
+  const uint8_t *dataBuffer = [input bytes];
+  unsigned long numBytes = [input length];
+
+  if (numBytes == 20) {
+    Byte b;
+
+    b = dataBuffer[8];
+    buttonMap.dpad_up    = (b & (1 << 0)) != 0;
+    buttonMap.dpad_down  = (b & (1 << 1)) != 0;
+    buttonMap.dpad_left  = (b & (1 << 2)) != 0;
+    buttonMap.dpad_right = (b & (1 << 3)) != 0;
+
+    buttonMap.a = (b & (1 << 4)) != 0;
+    buttonMap.b = (b & (1 << 5)) != 0;
+    buttonMap.x = (b & (1 << 6)) != 0;
+    buttonMap.y = (b & (1 << 7)) != 0;
+
+    b = dataBuffer[9];
+      
+    buttonMap.menu              = (b & (1 << 2)) != 0;
+    buttonMap.bumper_left       = (b & (1 << 4)) != 0;
+    buttonMap.bumper_right      = (b & (1 << 5)) != 0;
+
+    buttonMap.trigger_left  = dataBuffer[10];
+    buttonMap.trigger_right = dataBuffer[11];
+
+    buttonMap.stick_right_x = dataBuffer[12];
+    buttonMap.stick_right_y = dataBuffer[13];
+
+    buttonMap.stick_left_x  = dataBuffer[14];
+    buttonMap.stick_left_y  = dataBuffer[15];
+
+    [delegate controllerDidUpdateData:buttonMap];
   }
+
 }
 
 @end

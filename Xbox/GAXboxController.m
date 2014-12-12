@@ -32,6 +32,8 @@
   
   communication = [[GAXboxControllerCommunication alloc] init];
   [communication setDelegate:self];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceConnected:) name:@"deviceConnected" object:nil];
   
   _leftAnalogXOffset = 0;
   _leftAnalogYOffset = 0;
@@ -44,23 +46,12 @@
 #pragma mark - Connection Management
 
 - (void)connect {
-  int r;
-  if ((r = [communication searchForDevices]))
-    [_delegate controllerConnectionFailed:self withError:@"Device not found." errorCode:r];
-  
-  else if ((r = [communication openDevice]))
-    [_delegate controllerConnectionFailed:self withError:@"Could not open device." errorCode:r];
-  
-  else if ((r = [communication configureInterfaceParameters]))
-    [_delegate controllerConnectionFailed:self withError:@"Could not configure device." errorCode:r];
-  
-  else if ((r = [communication initializeController]))
-    [_delegate controllerConnectionFailed:self withError:@"Could not initialize device." errorCode:r];
-  
-  else {
+    [communication searchForDevices];
+}
+
+-(void) deviceConnected:(NSNotification*)notification {
     [_delegate controllerDidConnect:self];
     _connected = YES;
-  }
 }
 
 - (void)disconnect {
@@ -117,35 +108,33 @@
 
 - (BOOL)xboxButton { return buttonMap.home == 1; }
 
+
+#define MAX_SIGNED_BYTE 127
 - (float)leftAnalogX {
-  float v = (float) buttonMap.stick_left_x / ((1 << 15) - 1) - _leftAnalogXOffset;
+  float v = (float) buttonMap.stick_left_x / MAX_SIGNED_BYTE - _leftAnalogXOffset;
   return (fabs(v) < kHysteresis) ? 0 : v;
 }
 
 - (float)leftAnalogY {
-  float v = (float) buttonMap.stick_left_y / ((1 << 15) - 1) - _leftAnalogYOffset;
+  float v = (float) buttonMap.stick_left_y / MAX_SIGNED_BYTE - _leftAnalogYOffset;
   return (fabs(v) < kHysteresis) ? 0 : v;
 }
 
 - (float)rightAnalogX {
-  float v = (float) buttonMap.stick_right_x / ((1 << 15) - 1) - _rightAnalogXOffset;
+  float v = (float) buttonMap.stick_right_x / MAX_SIGNED_BYTE - _rightAnalogXOffset;
   return (fabs(v) < kHysteresis) ? 0 : v;
 }
 
 - (float)rightAnalogY {
-  float v = (float) buttonMap.stick_right_y / ((1 << 15) - 1) - _rightAnalogYOffset;
+  float v = (float) buttonMap.stick_right_y / MAX_SIGNED_BYTE - _rightAnalogYOffset;
   return (fabs(v) < kHysteresis) ? 0 : v;
 }
 
 - (float)leftTrigger {
-  if (_analogTriggers)
-    return (float) buttonMap.trigger_left / ((1 << 10) - 1);
   return buttonMap.trigger_left > 0 ? 1 : 0;
 }
 
 - (float)rightTrigger {
-  if (_analogTriggers)
-    return (float) buttonMap.trigger_right / ((1 << 10) - 1);
   return buttonMap.trigger_right > 0 ? 1 : 0;
 }
 

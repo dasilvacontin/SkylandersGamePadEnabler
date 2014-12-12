@@ -28,16 +28,17 @@ typedef struct {
 
   bool bumper_left;
   bool bumper_right;
+    
   bool stick_left_click;
   bool stick_right_click;
 
-  unsigned short trigger_left;
-  unsigned short trigger_right;
+  uint8_t trigger_left;
+  uint8_t trigger_right;
 
-  short stick_left_x;
-  short stick_left_y;
-  short stick_right_x;
-  short stick_right_y;
+  int8_t stick_left_x;
+  int8_t stick_left_y;
+  int8_t stick_right_x;
+  int8_t stick_right_y;
 
   bool home;
 } XboxOneButtonMap;

@@ -7,24 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <IOBluetooth/IOBluetooth.h>
 #import "XboxOneButtonMap.h"
 
 @protocol GAXboxControllerCommunicationDelegate <NSObject>
-
 - (void)controllerDidUpdateData:(XboxOneButtonMap)data;
 
 @end
 
-@interface GAXboxControllerCommunication : NSObject
-
+@interface GAXboxControllerCommunication : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+{
+    CBCentralManager *manager;
+    CBPeripheral *peripheral;
+    NSMutableArray *gamepads;
+}
 @property (weak, nonatomic) id<GAXboxControllerCommunicationDelegate> delegate;
 
 - (int)searchForDevices;
-- (int)openDevice;
-- (int)configureInterfaceParameters;
-- (int)initializeController;
 - (void)closeDevice;
 - (void)startPollingController;
 - (void)stopPollingController;
+
+- (void) startScan;
+- (void) stopScan;
+- (BOOL) isLECapableHardware;
+
 
 @end
