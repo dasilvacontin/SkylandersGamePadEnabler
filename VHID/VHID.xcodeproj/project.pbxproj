@@ -17,8 +17,8 @@
 		0A18417415BE8DC500F223E4 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A18417315BE8DC500F223E4 /* MainController.m */; };
 		0A18418615BE8E1700F223E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A18418515BE8E1700F223E4 /* main.m */; };
 		0A1841AA15BE904400F223E4 /* VHID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* VHID.framework */; };
-		0A1841C115BE906200F223E4 /* VHID.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* VHID.framework */; };
-		0A1841C615BE906800F223E4 /* WirtualJoy.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0A18414F15BE8D3300F223E4 /* WirtualJoy.framework */; };
+		0A1841C115BE906200F223E4 /* VHID.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* VHID.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		0A1841C615BE906800F223E4 /* WirtualJoy.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0A18414F15BE8D3300F223E4 /* WirtualJoy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		0A18444015BE990D00F223E4 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A18443F15BE990D00F223E4 /* TestView.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -307,7 +307,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "VHID" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -518,7 +518,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx;
@@ -531,7 +531,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PREBINDING = NO;
 				SDKROOT = macosx;
 			};

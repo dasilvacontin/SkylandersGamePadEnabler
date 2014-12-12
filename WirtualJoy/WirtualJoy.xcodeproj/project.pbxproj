@@ -20,7 +20,7 @@
 		0A46962315B593E7003AB8FD /* WJoyDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4691E815B56A1A003AB8FD /* WJoyDevice.m */; };
 		0A46966815B593F6003AB8FD /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1CB32615B022BD0012FCC7 /* IOKit.framework */; };
 		0A46966915B593F6003AB8FD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46925815B571F7003AB8FD /* Security.framework */; };
-		0A4696EC15B59587003AB8FD /* WirtualJoy.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46960715B593A2003AB8FD /* WirtualJoy.framework */; };
+		0A4696EC15B59587003AB8FD /* WirtualJoy.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46960715B593A2003AB8FD /* WirtualJoy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		0A4696F915B595F1003AB8FD /* test.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4696F815B595F1003AB8FD /* test.m */; };
 		0A46971615B5970A003AB8FD /* WirtualJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46960715B593A2003AB8FD /* WirtualJoy.framework */; };
 /* End PBXBuildFile section */
@@ -324,7 +324,7 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = 1DEB91DD08733DB10010E9CD /* Build configuration list for PBXProject "WirtualJoy" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -637,7 +637,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DDEBUG";
 				PREBINDING = NO;
@@ -651,7 +651,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PREBINDING = NO;
 				SDKROOT = macosx;
 			};
