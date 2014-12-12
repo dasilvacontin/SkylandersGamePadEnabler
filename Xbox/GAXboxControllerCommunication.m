@@ -18,37 +18,37 @@ static SInt32 idProduct = 0x02d1;
 
 @interface GAXboxControllerCommunication ()
 
-@property (nonatomic) CFMutableDictionaryRef matchingDictionary;
-@property (nonatomic) SInt32 score;
-@property (nonatomic) io_iterator_t iterator;
-@property (nonatomic) io_service_t usbRef;
-@property (nonatomic) IOCFPlugInInterface **plugin;
-@property (nonatomic) IOUSBConfigurationDescriptorPtr config;
-@property (nonatomic) IOUSBDeviceInterface300 **usbDevice;
-@property (nonatomic) IOUSBFindInterfaceRequest interfaceRequest;
-@property (nonatomic) IOUSBInterfaceInterface **usbInterface;
-@property (nonatomic) IOReturn returnCode;
-@property (nonatomic) XboxOneButtonMap buttonMap;
-@property (nonatomic) BOOL shouldPoll;
+  @property (nonatomic) CFMutableDictionaryRef matchingDictionary;
+  @property (nonatomic) SInt32 score;
+  @property (nonatomic) io_iterator_t iterator;
+  @property (nonatomic) io_service_t usbRef;
+  @property (nonatomic) IOCFPlugInInterface **plugin;
+  @property (nonatomic) IOUSBConfigurationDescriptorPtr config;
+  @property (nonatomic) IOUSBDeviceInterface300 **usbDevice;
+  @property (nonatomic) IOUSBFindInterfaceRequest interfaceRequest;
+  @property (nonatomic) IOUSBInterfaceInterface **usbInterface;
+  @property (nonatomic) IOReturn returnCode;
+  @property (nonatomic) XboxOneButtonMap buttonMap;
+  @property (nonatomic) BOOL shouldPoll;
 
 @end
 
 @implementation GAXboxControllerCommunication
 
-@synthesize delegate;
+  @synthesize delegate;
 
-@synthesize matchingDictionary;
-@synthesize score;
-@synthesize iterator;
-@synthesize usbRef;
-@synthesize plugin;
-@synthesize config;
-@synthesize usbDevice;
-@synthesize interfaceRequest;
-@synthesize usbInterface;
-@synthesize returnCode;
-@synthesize buttonMap;
-@synthesize shouldPoll;
+  @synthesize matchingDictionary;
+  @synthesize score;
+  @synthesize iterator;
+  @synthesize usbRef;
+  @synthesize plugin;
+  @synthesize config;
+  @synthesize usbDevice;
+  @synthesize interfaceRequest;
+  @synthesize usbInterface;
+  @synthesize returnCode;
+  @synthesize buttonMap;
+  @synthesize shouldPoll;
 
 #pragma mark - Object Life Cycle
 
