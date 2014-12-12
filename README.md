@@ -1,5 +1,9 @@
-Xbox One Controller Enabler
+Skylanders Trap Team GamePad (Bluetooth low energy)
 ===========================
+
+
+## Original Readme from xboxonecontrollerengabler follows...
+
 
 ![alt tag](https://raw.github.com/guilhermearaujo/xboxonecontrollerenabler/master/screenshot.png)
 
