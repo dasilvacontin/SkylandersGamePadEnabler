@@ -12,8 +12,6 @@
 		6D4739EB1A3AA83400C887F1 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4739EA1A3AA83400C887F1 /* IOBluetooth.framework */; };
 		7916EAF218E75C590064C241 /* VHID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB077818E66EDF0007BAD1 /* VHID.framework */; };
 		7916EAF418E765B20064C241 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB06D118E397C70007BAD1 /* MainMenu.xib */; };
-		7916EAF718E76BD80064C241 /* off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7916EAF518E76BD80064C241 /* off.png */; };
-		7916EAF818E76BD80064C241 /* on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7916EAF618E76BD80064C241 /* on.png */; };
 		7916EB0618E771730064C241 /* VHID.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB077818E66EDF0007BAD1 /* VHID.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7916EB0718E771820064C241 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB072A18E4DA8F0007BAD1 /* IOKit.framework */; };
 		7916EB0818E771850064C241 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB06BC18E397C70007BAD1 /* Cocoa.framework */; };
@@ -64,10 +62,7 @@
 /* Begin PBXFileReference section */
 		6D4739E51A3A905400C887F1 /* WirtualJoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = WirtualJoy.framework; path = "/Users/bettse/Library/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug/WirtualJoy.framework"; sourceTree = "<absolute>"; };
 		6D4739EA1A3AA83400C887F1 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
-		7916EAF518E76BD80064C241 /* off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = off.png; sourceTree = "<group>"; };
-		7916EAF618E76BD80064C241 /* on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = on.png; sourceTree = "<group>"; };
 		79A6C74F18E787C70050CD3A /* WirtualJoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WirtualJoy.framework; path = "../../../Library/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-eyxnkpueyftvadeltapuzbfrimys/Build/Products/Debug/WirtualJoy.framework"; sourceTree = "<group>"; };
-		79BB000E1A0DB52D0088E155 /* libusb-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusb-1.0.a"; sourceTree = "<group>"; };
 		79FB06B918E397C70007BAD1 /* Xbox One Controller Enabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xbox One Controller Enabler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FB06BC18E397C70007BAD1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		79FB06BF18E397C70007BAD1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -155,8 +150,6 @@
 		79FB06C218E397C70007BAD1 /* Xbox */ = {
 			isa = PBXGroup;
 			children = (
-				7916EAF518E76BD80064C241 /* off.png */,
-				7916EAF618E76BD80064C241 /* on.png */,
 				79FB06CE18E397C70007BAD1 /* GAAppDelegate.h */,
 				79FB06CF18E397C70007BAD1 /* GAAppDelegate.m */,
 				79FB073818E6252E0007BAD1 /* GAMainViewController.h */,
@@ -169,7 +162,6 @@
 				79FB06D118E397C70007BAD1 /* MainMenu.xib */,
 				79FB074018E62CFC0007BAD1 /* XboxOneButtonMap.h */,
 				79FB06D418E397C70007BAD1 /* Images.xcassets */,
-				79BB000E1A0DB52D0088E155 /* libusb-1.0.a */,
 				79FB06C318E397C70007BAD1 /* Supporting Files */,
 			);
 			path = Xbox;
@@ -275,10 +267,8 @@
 			files = (
 				7916EAF418E765B20064C241 /* MainMenu.xib in Resources */,
 				79FB06C718E397C70007BAD1 /* InfoPlist.strings in Resources */,
-				7916EAF718E76BD80064C241 /* off.png in Resources */,
 				79FB06D518E397C70007BAD1 /* Images.xcassets in Resources */,
 				79FB06CD18E397C70007BAD1 /* Credits.rtf in Resources */,
-				7916EAF818E76BD80064C241 /* on.png in Resources */,
 				79FB073C18E6252E0007BAD1 /* GAMainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
