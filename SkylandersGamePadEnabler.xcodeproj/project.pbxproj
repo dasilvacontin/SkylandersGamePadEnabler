@@ -217,7 +217,7 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Guilherme Araújo";
 			};
-			buildConfigurationList = 79FB06B418E397C70007BAD1 /* Build configuration list for PBXProject "Skylanders GamePad Enabler" */;
+			buildConfigurationList = 79FB06B418E397C70007BAD1 /* Build configuration list for PBXProject "SkylandersGamePadEnabler" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -348,9 +348,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -381,8 +382,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				SDKROOT = macosx;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -404,7 +406,7 @@
 					/usr/local/lib,
 					"$(PROJECT_DIR)/GamePad",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_LDFLAGS = "-lusb-1.0";
 				PRODUCT_NAME = "Skylanders GamePad Enabler";
 				WRAPPER_EXTENSION = app;
@@ -429,7 +431,7 @@
 					/usr/local/lib,
 					"$(PROJECT_DIR)/GamePad",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_LDFLAGS = "-lusb-1.0";
 				PRODUCT_NAME = "Skylanders GamePad Enabler";
 				WRAPPER_EXTENSION = app;
@@ -439,7 +441,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		79FB06B418E397C70007BAD1 /* Build configuration list for PBXProject "Skylanders GamePad Enabler" */ = {
+		79FB06B418E397C70007BAD1 /* Build configuration list for PBXProject "SkylandersGamePadEnabler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				79FB06E818E397C70007BAD1 /* Debug */,
