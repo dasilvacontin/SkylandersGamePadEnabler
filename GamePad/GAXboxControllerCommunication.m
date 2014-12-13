@@ -11,11 +11,11 @@
 #import <IOKit/IOCFPlugIn.h>
 #import <IOKit/usb/IOUSBLib.h>
 #import <IOKit/usb/USBSpec.h>
-#import "XboxOneButtonMap.h"
+#import "GamePadButtonMap.h"
 
 @interface GAXboxControllerCommunication ()
 
-  @property (nonatomic) XboxOneButtonMap buttonMap;
+  @property (nonatomic) GamePadButtonMap buttonMap;
 
 @end
 

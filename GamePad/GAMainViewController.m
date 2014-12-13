@@ -8,7 +8,7 @@
 
 #import "GAMainViewController.h"
 #import "GAXboxController.h"
-#import "XboxOneButtonMap.h"
+#import "GamePadButtonMap.h"
 #import <VHID/VHIDDevice.h>
 #import <WirtualJoy/WJoyDevice.h>
 

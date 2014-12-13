@@ -82,7 +82,7 @@
 		79FB073A18E6252E0007BAD1 /* GAMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GAMainViewController.xib; sourceTree = "<group>"; };
 		79FB073D18E62BAD0007BAD1 /* GAXboxControllerCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAXboxControllerCommunication.h; sourceTree = "<group>"; };
 		79FB073E18E62BAD0007BAD1 /* GAXboxControllerCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAXboxControllerCommunication.m; sourceTree = "<group>"; };
-		79FB074018E62CFC0007BAD1 /* XboxOneButtonMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XboxOneButtonMap.h; sourceTree = "<group>"; };
+		79FB074018E62CFC0007BAD1 /* GamePadButtonMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GamePadButtonMap.h; sourceTree = "<group>"; };
 		79FB074118E63F380007BAD1 /* GAXboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAXboxController.h; sourceTree = "<group>"; };
 		79FB074218E63F380007BAD1 /* GAXboxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAXboxController.m; sourceTree = "<group>"; };
 		79FB077118E66EDE0007BAD1 /* VHID.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VHID.xcodeproj; path = VHID/VHID.xcodeproj; sourceTree = "<group>"; };
@@ -158,11 +158,10 @@
 				79FB073D18E62BAD0007BAD1 /* GAXboxControllerCommunication.h */,
 				79FB073E18E62BAD0007BAD1 /* GAXboxControllerCommunication.m */,
 				79FB06D118E397C70007BAD1 /* MainMenu.xib */,
-				79FB074018E62CFC0007BAD1 /* XboxOneButtonMap.h */,
+				79FB074018E62CFC0007BAD1 /* GamePadButtonMap.h */,
 				79FB06D418E397C70007BAD1 /* Images.xcassets */,
 				79FB06C318E397C70007BAD1 /* Supporting Files */,
 			);
-			name = GamePad;
 			path = GamePad;
 			sourceTree = "<group>";
 		};

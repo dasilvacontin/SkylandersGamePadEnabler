@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <IOBluetooth/IOBluetooth.h>
-#import "XboxOneButtonMap.h"
+#import "GamePadButtonMap.h"
 
 #define GAMEPAD_SERVICE @"1531"
 
 @protocol GAXboxControllerCommunicationDelegate <NSObject>
-- (void)controllerDidUpdateData:(XboxOneButtonMap)data;
+- (void)controllerDidUpdateData:(GamePadButtonMap)data;
 
 @end
 

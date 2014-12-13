@@ -14,7 +14,7 @@
 @interface GAXboxController () <GAXboxControllerCommunicationDelegate>
 
 @property (strong, nonatomic) GAXboxControllerCommunication *communication;
-@property (nonatomic) XboxOneButtonMap buttonMap;
+@property (nonatomic) GamePadButtonMap buttonMap;
 
 @end
 
@@ -60,7 +60,7 @@
 
 #pragma mark - Xbox Controller Communication Delegate Method
 
-- (void)controllerDidUpdateData:(XboxOneButtonMap)data {
+- (void)controllerDidUpdateData:(GamePadButtonMap)data {
   buttonMap = data;
   [_delegate controllerDidUpdateData:self];
 }
