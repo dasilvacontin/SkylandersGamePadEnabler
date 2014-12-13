@@ -109,7 +109,7 @@
 			children = (
 				6D4739E51A3A905400C887F1 /* WirtualJoy.framework */,
 				79FB077118E66EDE0007BAD1 /* VHID.xcodeproj */,
-				79FB06C218E397C70007BAD1 /* Xbox */,
+				79FB06C218E397C70007BAD1 /* GamePad */,
 				79FB06BB18E397C70007BAD1 /* Frameworks */,
 				79FB06BA18E397C70007BAD1 /* Products */,
 			);
@@ -145,7 +145,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		79FB06C218E397C70007BAD1 /* Xbox */ = {
+		79FB06C218E397C70007BAD1 /* GamePad */ = {
 			isa = PBXGroup;
 			children = (
 				79FB06CE18E397C70007BAD1 /* GAAppDelegate.h */,
@@ -162,7 +162,8 @@
 				79FB06D418E397C70007BAD1 /* Images.xcassets */,
 				79FB06C318E397C70007BAD1 /* Supporting Files */,
 			);
-			path = Xbox;
+			name = GamePad;
+			path = GamePad;
 			sourceTree = "<group>";
 		};
 		79FB06C318E397C70007BAD1 /* Supporting Files */ = {
@@ -203,7 +204,7 @@
 			dependencies = (
 			);
 			name = "Skylanders GamePad Enabler";
-			productName = Xbox;
+			productName = GamePad;
 			productReference = 79FB06B918E397C70007BAD1 /* Skylanders GamePad Enabler.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -397,12 +398,12 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Xbox/Skylanders GamePad Enabler-Prefix.pch";
-				INFOPLIST_FILE = "Xbox/Skylanders GamePad Enabler-Info.plist";
+				GCC_PREFIX_HEADER = "GamePad/Skylanders GamePad Enabler-Prefix.pch";
+				INFOPLIST_FILE = "GamePad/Skylanders GamePad Enabler-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
-					"$(PROJECT_DIR)/Xbox",
+					"$(PROJECT_DIR)/GamePad",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lusb-1.0";
@@ -422,12 +423,12 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Xbox/Skylanders GamePad Enabler-Prefix.pch";
-				INFOPLIST_FILE = "Xbox/Skylanders GamePad Enabler-Info.plist";
+				GCC_PREFIX_HEADER = "GamePad/Skylanders GamePad Enabler-Prefix.pch";
+				INFOPLIST_FILE = "GamePad/Skylanders GamePad Enabler-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
-					"$(PROJECT_DIR)/Xbox",
+					"$(PROJECT_DIR)/GamePad",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lusb-1.0";
