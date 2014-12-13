@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Xbox One Controller Enabler.xcodeproj">
+      location = "self:Skylanders GamePad Enabler.xcodeproj">
    </FileRef>
 </Workspace>

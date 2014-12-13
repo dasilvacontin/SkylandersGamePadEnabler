@@ -15,7 +15,6 @@
 		7916EB0618E771730064C241 /* VHID.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB077818E66EDF0007BAD1 /* VHID.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7916EB0718E771820064C241 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB072A18E4DA8F0007BAD1 /* IOKit.framework */; };
 		7916EB0818E771850064C241 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB06BC18E397C70007BAD1 /* Cocoa.framework */; };
-		79A6C75018E787C70050CD3A /* WirtualJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A6C74F18E787C70050CD3A /* WirtualJoy.framework */; };
 		79FB06C718E397C70007BAD1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79FB06C518E397C70007BAD1 /* InfoPlist.strings */; };
 		79FB06C918E397C70007BAD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB06C818E397C70007BAD1 /* main.m */; };
 		79FB06CD18E397C70007BAD1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 79FB06CB18E397C70007BAD1 /* Credits.rtf */; };
@@ -63,15 +62,15 @@
 		6D4739E51A3A905400C887F1 /* WirtualJoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = WirtualJoy.framework; path = "/Users/bettse/Library/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug/WirtualJoy.framework"; sourceTree = "<absolute>"; };
 		6D4739EA1A3AA83400C887F1 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		79A6C74F18E787C70050CD3A /* WirtualJoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WirtualJoy.framework; path = "../../../Library/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-eyxnkpueyftvadeltapuzbfrimys/Build/Products/Debug/WirtualJoy.framework"; sourceTree = "<group>"; };
-		79FB06B918E397C70007BAD1 /* Xbox One Controller Enabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xbox One Controller Enabler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		79FB06B918E397C70007BAD1 /* Skylanders GamePad Enabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skylanders GamePad Enabler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FB06BC18E397C70007BAD1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		79FB06BF18E397C70007BAD1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		79FB06C018E397C70007BAD1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		79FB06C118E397C70007BAD1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		79FB06C418E397C70007BAD1 /* Xbox One Controller Enabler-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Xbox One Controller Enabler-Info.plist"; sourceTree = "<group>"; };
+		79FB06C418E397C70007BAD1 /* Skylanders GamePad Enabler-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Skylanders GamePad Enabler-Info.plist"; sourceTree = "<group>"; };
 		79FB06C618E397C70007BAD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		79FB06C818E397C70007BAD1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		79FB06CA18E397C70007BAD1 /* Xbox One Controller Enabler-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Xbox One Controller Enabler-Prefix.pch"; sourceTree = "<group>"; };
+		79FB06CA18E397C70007BAD1 /* Skylanders GamePad Enabler-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Skylanders GamePad Enabler-Prefix.pch"; sourceTree = "<group>"; };
 		79FB06CC18E397C70007BAD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		79FB06CE18E397C70007BAD1 /* GAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAAppDelegate.h; sourceTree = "<group>"; };
 		79FB06CF18E397C70007BAD1 /* GAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAAppDelegate.m; sourceTree = "<group>"; };
@@ -95,7 +94,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D4739EB1A3AA83400C887F1 /* IOBluetooth.framework in Frameworks */,
-				79A6C75018E787C70050CD3A /* WirtualJoy.framework in Frameworks */,
 				7916EB0818E771850064C241 /* Cocoa.framework in Frameworks */,
 				7916EB0718E771820064C241 /* IOKit.framework in Frameworks */,
 				6D4739E61A3A905400C887F1 /* WirtualJoy.framework in Frameworks */,
@@ -120,7 +118,7 @@
 		79FB06BA18E397C70007BAD1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				79FB06B918E397C70007BAD1 /* Xbox One Controller Enabler.app */,
+				79FB06B918E397C70007BAD1 /* Skylanders GamePad Enabler.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,10 +168,10 @@
 		79FB06C318E397C70007BAD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				79FB06C418E397C70007BAD1 /* Xbox One Controller Enabler-Info.plist */,
+				79FB06C418E397C70007BAD1 /* Skylanders GamePad Enabler-Info.plist */,
 				79FB06C518E397C70007BAD1 /* InfoPlist.strings */,
 				79FB06C818E397C70007BAD1 /* main.m */,
-				79FB06CA18E397C70007BAD1 /* Xbox One Controller Enabler-Prefix.pch */,
+				79FB06CA18E397C70007BAD1 /* Skylanders GamePad Enabler-Prefix.pch */,
 				79FB06CB18E397C70007BAD1 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -191,9 +189,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		79FB06B818E397C70007BAD1 /* Xbox One Controller Enabler */ = {
+		79FB06B818E397C70007BAD1 /* Skylanders GamePad Enabler */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 79FB06EA18E397C70007BAD1 /* Build configuration list for PBXNativeTarget "Xbox One Controller Enabler" */;
+			buildConfigurationList = 79FB06EA18E397C70007BAD1 /* Build configuration list for PBXNativeTarget "Skylanders GamePad Enabler" */;
 			buildPhases = (
 				79FB06B518E397C70007BAD1 /* Sources */,
 				79FB06B618E397C70007BAD1 /* Frameworks */,
@@ -204,9 +202,9 @@
 			);
 			dependencies = (
 			);
-			name = "Xbox One Controller Enabler";
+			name = "Skylanders GamePad Enabler";
 			productName = Xbox;
-			productReference = 79FB06B918E397C70007BAD1 /* Xbox One Controller Enabler.app */;
+			productReference = 79FB06B918E397C70007BAD1 /* Skylanders GamePad Enabler.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -219,7 +217,7 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Guilherme Araújo";
 			};
-			buildConfigurationList = 79FB06B418E397C70007BAD1 /* Build configuration list for PBXProject "Xbox One Controller Enabler" */;
+			buildConfigurationList = 79FB06B418E397C70007BAD1 /* Build configuration list for PBXProject "Skylanders GamePad Enabler" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -238,7 +236,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				79FB06B818E397C70007BAD1 /* Xbox One Controller Enabler */,
+				79FB06B818E397C70007BAD1 /* Skylanders GamePad Enabler */,
 			);
 		};
 /* End PBXProject section */
@@ -401,8 +399,8 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Xbox/Xbox One Controller Enabler-Prefix.pch";
-				INFOPLIST_FILE = "Xbox/Xbox One Controller Enabler-Info.plist";
+				GCC_PREFIX_HEADER = "Xbox/Skylanders GamePad Enabler-Prefix.pch";
+				INFOPLIST_FILE = "Xbox/Skylanders GamePad Enabler-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -410,7 +408,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lusb-1.0";
-				PRODUCT_NAME = "Xbox One Controller Enabler";
+				PRODUCT_NAME = "Skylanders GamePad Enabler";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -428,8 +426,8 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Xbox/Xbox One Controller Enabler-Prefix.pch";
-				INFOPLIST_FILE = "Xbox/Xbox One Controller Enabler-Info.plist";
+				GCC_PREFIX_HEADER = "Xbox/Skylanders GamePad Enabler-Prefix.pch";
+				INFOPLIST_FILE = "Xbox/Skylanders GamePad Enabler-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -437,7 +435,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lusb-1.0";
-				PRODUCT_NAME = "Xbox One Controller Enabler";
+				PRODUCT_NAME = "Skylanders GamePad Enabler";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -445,7 +443,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		79FB06B418E397C70007BAD1 /* Build configuration list for PBXProject "Xbox One Controller Enabler" */ = {
+		79FB06B418E397C70007BAD1 /* Build configuration list for PBXProject "Skylanders GamePad Enabler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				79FB06E818E397C70007BAD1 /* Debug */,
@@ -454,7 +452,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		79FB06EA18E397C70007BAD1 /* Build configuration list for PBXNativeTarget "Xbox One Controller Enabler" */ = {
+		79FB06EA18E397C70007BAD1 /* Build configuration list for PBXNativeTarget "Skylanders GamePad Enabler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				79FB06EB18E397C70007BAD1 /* Debug */,
