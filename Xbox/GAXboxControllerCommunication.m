@@ -40,7 +40,7 @@
 
 - (int)searchForDevices {
 
-    NSLog(@"%s, %@", __PRETTY_FUNCTION__, peripheral);
+    //NSLog(@"%s, %@", __PRETTY_FUNCTION__, peripheral);
     if(peripheral && (peripheral.state == CBPeripheralStateConnected)) {
     } else {   /* No outstanding connection, open scan sheet */
         [self startScan];
@@ -109,7 +109,7 @@
 {
 
     //NSLog(@"%s, %@", __PRETTY_FUNCTION__, manager);
-    [manager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"1531"]] options:nil];
+    [manager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:GAMEPAD_SERVICE]] options:nil];
 }
 
 /*
@@ -134,31 +134,10 @@
  */
 - (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)aPeripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    NSLog(@"%s, %@", __PRETTY_FUNCTION__, aPeripheral);
-    if( ![gamepads containsObject:aPeripheral] ) {
-        [gamepads addObject:aPeripheral];
-    }
-    //[manager retrievePeripheralsWithIdentifiers:@[aPeripheral.identifier]];
-    [manager retrievePeripherals:@[(id)aPeripheral.UUID]];
+    //NSLog(@"%s, %@", __PRETTY_FUNCTION__, aPeripheral);
+    peripheral = aPeripheral;
+    [manager connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey: [NSNumber numberWithBool:YES]}];
 
-
-}
-
-/*
- Invoked when the central manager retrieves the list of known peripherals.
- Automatically connect to first known peripheral
- */
-- (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
-{
-    //NSLog(@"Retrieved peripheral: %lu - %@", [peripherals count], peripherals);
-
-    [self stopScan];
-
-    /* If there are any known devices, automatically connect to it.*/
-    if([peripherals count] > 0){
-        peripheral = peripherals[0];
-        [manager connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey: [NSNumber numberWithBool:YES]}];
-    }
 }
 
 /*
@@ -168,6 +147,8 @@
 - (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral
 {
     //NSLog(@"%s, %@", __PRETTY_FUNCTION__, aPeripheral);
+
+    [self stopScan];
     [aPeripheral setDelegate:self];
     [aPeripheral discoverServices:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName: @"deviceConnected" object:nil userInfo:nil];

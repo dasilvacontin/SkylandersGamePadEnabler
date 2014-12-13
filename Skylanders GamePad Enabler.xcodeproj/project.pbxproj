@@ -394,8 +394,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox-ghwsalepozbpccdjvccqbjjmccoh/Build/Products/Debug",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-eyxnkpueyftvadeltapuzbfrimys/Build/Products/Debug",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -421,8 +419,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox-ghwsalepozbpccdjvccqbjjmccoh/Build/Products/Debug",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-eyxnkpueyftvadeltapuzbfrimys/Build/Products/Debug",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Xbox_One_Controller_Enabler-ainjggmeictonhczoovorjttzkmv/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
