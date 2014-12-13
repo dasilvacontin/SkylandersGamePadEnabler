@@ -27,8 +27,6 @@
 
 - (int)searchForDevices;
 - (void)closeDevice;
-- (void)startPollingController;
-- (void)stopPollingController;
 
 - (void) startScan;
 - (void) stopScan;

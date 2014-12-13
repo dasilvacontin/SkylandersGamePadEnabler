@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#define MAX_SIGNED_BYTE 127
 
 @protocol GAXboxControllerDelegate;
 
 @interface GAXboxController : NSObject
 
 @property (nonatomic, getter = isConnected) BOOL connected;
-@property (nonatomic) BOOL analogTriggers;
 @property (nonatomic) float leftAnalogXOffset;
 @property (nonatomic) float leftAnalogYOffset;
 @property (nonatomic) float rightAnalogXOffset;
@@ -23,8 +23,6 @@
 
 - (void)connect;
 - (void)disconnect;
-- (void)startPolling;
-- (void)stopPolling;
 
 - (BOOL)DPadUp;
 - (BOOL)DPadDown;
@@ -39,12 +37,7 @@
 - (BOOL)leftBumper;
 - (BOOL)rightBumper;
 
-- (BOOL)leftAnalogButton;
-- (BOOL)rightAnalogButton;
-
-- (BOOL)view;
 - (BOOL)menu;
-- (BOOL)xboxButton;
 
 - (float)leftAnalogX;
 - (float)leftAnalogY;

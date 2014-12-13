@@ -16,7 +16,6 @@
 @interface GAXboxControllerCommunication ()
 
   @property (nonatomic) XboxOneButtonMap buttonMap;
-  @property (nonatomic) BOOL shouldPoll;
 
 @end
 
@@ -24,15 +23,12 @@
 
   @synthesize delegate;
   @synthesize buttonMap;
-  @synthesize shouldPoll;
 
 #pragma mark - Object Life Cycle
 
 - (id)init {
   self = [super init];
   manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-  gamepads = [NSMutableArray arrayWithCapacity:2];
-  shouldPoll = NO;
   return self;
 }
 
@@ -51,20 +47,6 @@
 
 - (void)closeDevice {
     [manager cancelPeripheralConnection:peripheral];
-}
-
-- (void)startPollingController {
-  if (!shouldPoll) {
-    shouldPoll = YES;
-  }
-}
-
-- (void)stopPollingController {
-  shouldPoll = NO;
-}
-
-- (void)poll {
-
 }
 
 #pragma mark - Bluetooth Low Energy

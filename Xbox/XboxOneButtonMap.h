@@ -11,10 +11,7 @@
 //  Adapted from http://blog.tojicode.com/2014/02/xbox-one-controller-in-chrome-on-osx.html
 
 typedef struct {
-  bool sync;
-  bool dummy; // Always 0.
   bool menu;  // Not entirely sure what these are
-  bool view;  // called on the new controller
 
   bool a;
   bool b;
@@ -28,9 +25,6 @@ typedef struct {
 
   bool bumper_left;
   bool bumper_right;
-    
-  bool stick_left_click;
-  bool stick_right_click;
 
   uint8_t trigger_left;
   uint8_t trigger_right;
@@ -40,6 +34,5 @@ typedef struct {
   int8_t stick_right_x;
   int8_t stick_right_y;
 
-  bool home;
 } XboxOneButtonMap;
 

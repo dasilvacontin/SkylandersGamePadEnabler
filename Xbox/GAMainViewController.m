@@ -90,13 +90,10 @@ typedef enum {
 - (void)controllerDidConnect:(GAXboxController *)controller {
   [WJoyDevice prepare];
   [_triggerButton setEnabled:YES];
-  [_controller startPolling];
   [_connectButton setTitle:@"Disconnect"];
   _VHID = [[VHIDDevice alloc] initWithType:VHIDDeviceTypeJoystick pointerCount:3 buttonCount:17 isRelative:NO];
   
-  NSDictionary *properties = @{WJoyDeviceProductStringKey : @"Xbox One Controller"};
-  //                               WJoyDeviceProductIDKey : @0x02d1,
-  //                               WJoyDeviceVendorIDKey : @0x045e};
+  NSDictionary *properties = @{WJoyDeviceProductStringKey : @"Skylanders GamePad"};
   _virtualDevice = [[WJoyDevice alloc] initWithHIDDescriptor:[_VHID descriptor] properties:properties];
   
   [_VHID setDelegate:self];
@@ -136,7 +133,7 @@ typedef enum {
   
   else if ([controller A] || [controller DPadUp]    || [controller leftBumper]  ||
            [controller B] || [controller DPadDown]  || [controller rightBumper] ||
-           [controller X] || [controller DPadLeft]  || [controller view]        ||
+           [controller X] || [controller DPadLeft]  ||
            [controller Y] || [controller DPadRight] || [controller menu])
     _isCalibrating = NO;
 }
@@ -180,11 +177,7 @@ typedef enum {
   
   [_radioLeftBumper  setIntegerValue:[controller leftBumper]];
   [_radioRightBumper setIntegerValue:[controller rightBumper]];
-  
-  [_radioLeftAnalogButton  setIntegerValue:[controller leftAnalogButton]];
-  [_radioRightAnalogButton setIntegerValue:[controller rightAnalogButton]];
-  
-  [_radioView setIntegerValue:[controller view]];
+
   [_radioMenu setIntegerValue:[controller menu]];
   
   [_progressLeftAnalogX  setDoubleValue:[controller leftAnalogX]];
@@ -222,26 +215,15 @@ typedef enum {
   [_VHID setButton:4 pressed:[controller leftBumper]];
   [_VHID setButton:5 pressed:[controller rightBumper]];
   
-  if ([_controller analogTriggers]) {
-    [_VHID setButton:6 pressed:NO];
-    [_VHID setButton:7 pressed:NO];
-  } else {
-    [_VHID setButton:6 pressed:[controller leftTrigger]];
-    [_VHID setButton:7 pressed:[controller rightTrigger]];
-  }
-  
-  [_VHID setButton:8 pressed:[controller view]];
+  [_VHID setButton:6 pressed:[controller leftTrigger]];
+  [_VHID setButton:7 pressed:[controller rightTrigger]];
+
   [_VHID setButton:9 pressed:[controller menu]];
-  
-  [_VHID setButton:10 pressed:[controller leftAnalogButton]];
-  [_VHID setButton:11 pressed:[controller rightAnalogButton]];
-  
+
   [_VHID setButton:12 pressed:[controller DPadUp]];
   [_VHID setButton:13 pressed:[controller DPadDown]];
   [_VHID setButton:14 pressed:[controller DPadLeft]];
   [_VHID setButton:15 pressed:[controller DPadRight]];
-  
-  [_VHID setButton:16 pressed:[controller xboxButton]];
   
   NSPoint point = NSZeroPoint;
   point.x = [controller leftAnalogX];
@@ -251,14 +233,8 @@ typedef enum {
   point.x = [controller rightAnalogX];
   point.y = [controller rightAnalogY];
   [_VHID setPointer:1 position:point];
-  
-  if ([_controller analogTriggers]) {
-    point.x = [controller leftTrigger];
-    point.y = [controller rightTrigger];
-    [_VHID setPointer:2 position:point];
-  } else {
-    [_VHID setPointer:2 position:NSZeroPoint];
-  }
+  [_VHID setPointer:2 position:NSZeroPoint];
+
 }
 
 #pragma mark - Interface Builder Methods
@@ -274,7 +250,6 @@ typedef enum {
       [_controller setRightAnalogYOffset:[[NSUserDefaults standardUserDefaults] floatForKey:@"Offset_RY"]];
     }
     
-    [_controller setAnalogTriggers:([_triggerButton selectedSegment] == 0)];
     [_controller setDelegate:self];
   }
   
@@ -295,7 +270,7 @@ typedef enum {
 }
 
 - (IBAction)triggerMode:(NSSegmentedControl *)sender {
-  [_controller setAnalogTriggers:([sender selectedSegment] == 0)];
+
 }
 
 - (IBAction)resetCalibration:(NSButton *)sender {

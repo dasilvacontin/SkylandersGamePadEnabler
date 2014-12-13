@@ -28,8 +28,6 @@
 - (id)init {
   self = [super init];
   
-  _analogTriggers = YES;
-  
   communication = [[GAXboxControllerCommunication alloc] init];
   [communication setDelegate:self];
 
@@ -55,18 +53,9 @@
 }
 
 - (void)disconnect {
-  [self stopPolling];
   [communication closeDevice];
   _connected = NO;
   [_delegate controllerDidDisconnect:self];
-}
-
-- (void)startPolling {
-  [communication startPollingController];
-}
-
-- (void)stopPolling {
-  [communication stopPollingController];
 }
 
 #pragma mark - Xbox Controller Communication Delegate Method
@@ -98,18 +87,9 @@
 
 - (BOOL)rightBumper { return buttonMap.bumper_right == 1; }
 
-- (BOOL)leftAnalogButton { return buttonMap.stick_left_click == 1; }
-
-- (BOOL)rightAnalogButton { return buttonMap.stick_right_click == 1; }
-
-- (BOOL)view { return buttonMap.view == 1; }
-
 - (BOOL)menu { return buttonMap.menu == 1; }
 
-- (BOOL)xboxButton { return buttonMap.home == 1; }
 
-
-#define MAX_SIGNED_BYTE 127
 - (float)leftAnalogX {
   float v = (float) buttonMap.stick_left_x / MAX_SIGNED_BYTE - _leftAnalogXOffset;
   return (fabs(v) < kHysteresis) ? 0 : v;
